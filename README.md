@@ -58,6 +58,13 @@ Ta có hai cách như sau
   - Trong dự án này mình sẽ ánh xạ một số hàm của file Bass.dll từ đó có thể phát nhạc Module.
 ___
 ### Phần 4: Biểu đồ UML và cấu trúc Game:
+<img width="5567" height="6336" alt="image" src="https://github.com/minhduc7265/readme_/blob/main/UML5.png" />
+
+
+
+
+
+
 🔹 1. Package engine
 - Chức năng: Quản lí logic va chạm và quản lí trạng thái game
 - Các lớp gồm:   
