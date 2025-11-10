@@ -8,7 +8,10 @@ Mình sẽ giới thiệu game và chúng gồm các phần như sau
 📌 Phần 2: Tải game   
 📌 Phần 3: Giới thiệu thư viện sử dụng   
 📌 Phần 4: Biểu đồ UML và cấu trúc Game   
-📌 Phần 5: Giới thiệu vật phẩm và tính năng   
+📌 Phần 5: Các kỹ thuật sử dụng   
+📌 Phần 6: Giới thiệu các vật phẩm trong game   
+📌 Phần 7: Giới thiệu các tính năng trong game   
+📌 Phần 8: Tài liệu tham khảo   
 ___
 ### Phần 1: Giới thiệu thành viên      
 - Họ và Tên: **Hoàng Minh Đức** - MSV: **24021412**   
@@ -62,7 +65,7 @@ ___
  **Collision, CollisionResult**:	Phát hiện và phản ứng va chạm giữa bóng – gạch – paddle.    
  **GameManager**:	Quản lý trạng thái tổng thể của trò chơi (điểm, mạng, cấp độ).
    
-🔹 2. Gói model – Mô hình đối tượng trong game
+🔹 2. Package model – Mô hình đối tượng trong game
 - Chức năng: Mỗi lớp là một đối tượng cụ thể trong thế giới Arkanoid, được kế thừa từ GameObject hoặc MovableObject.   
 - Các lớp gồm:   
 **Ball, Paddle, Brick**: Các đối tượng chính trong gameplay.   
@@ -71,14 +74,14 @@ ___
 **ExpandPaddleItem, FastBallItem, FireBallItem, BallBreakItem...**:	Vật phẩm tăng/giảm sức mạnh.   
 **BrickFactory**: Tạo đối tượng gạch theo loại.
 
-🔹 3. Gói world – Quản lý thế giới trò chơi
+🔹 3. Package world – Quản lý thế giới trò chơi
 - Chức năng: Là tầng trung gian giữa logic và render.   
 - Các lớp gồm:    
 **GameWorld**:	Quản lý toàn bộ các đối tượng, cập nhật trạng thái và vẽ khung hình.   
 **CollisionManager**:	Gọi đến engine.Collision để kiểm tra va chạm.   
 **LevelLoader**:	Tải bản đồ màn chơi từ dữ liệu trong leveldata.
     
-🔹 4. Gói leveldata – Dữ liệu và cấu hình màn chơi   
+🔹 4. Package leveldata – Dữ liệu và cấu hình màn chơi   
 - Chức năng: Cung cấp thông tin cho từng màn và lưu tiến trình người chơi.   
 - Các lớp gồm:   
 **LevelInfo**:	Thông tin bố trí gạch trong từng màn.   
@@ -86,7 +89,7 @@ ___
 **GameDataManager**:	Quản lý lưu/trả dữ liệu người chơi.   
 **PlayerData**:	Lưu điểm, mạng, cấp độ hiện tại.
    
-🔹 5. Gói output – Hiển thị, âm thanh và hiệu ứng   
+🔹 5. Package output – Hiển thị, âm thanh và hiệu ứng   
 - Chức năng: Xử lý mọi thứ liên quan đến render, animation, button, sound.   
 - Các lớp gồm:     
 **Renderer, MasterRenderer**:	Kết xuất (render) các đối tượng 2D.   
@@ -96,7 +99,7 @@ ___
 **SoundManager, MusicManager, Bass**:	Phát âm thanh và nhạc nền.   
 **Button**:	Nút tương tác trong menu.
 
-🔹 6. Gói screens – Giao diện và điều hướng   
+🔹 6. Package screens – Giao diện và điều hướng   
 
 - Chức năng: Tổ chức màn hình khác nhau theo LibGDX.   
 - Các lớp gồm:     
@@ -105,7 +108,7 @@ ___
 **CreditScreen**:	Hiển thị thông tin nhóm phát triển.   
 **ButtonManager**:	Quản lý các nút trong từng màn hình.
 
-🔹 7. Lớp Main   
+🔹 7. Class Main   
 - Chức năng: Là nơi khởi chạy ứng dụng   
 - **Main**: tạo đối tượng game, khởi tạo LibGDX, thiết lập màn hình đầu tiên.   
 ___
@@ -178,15 +181,18 @@ ___
 
 
 ### Phần 7: Giới thiệu các tính năng trong game
-
-
-
-
-
-
-
-
-
+- Điều khiển thanh trượt: Người chơi dùng chuột để điều khiển bắt bóng hợp lí.   
+- Bóng nảy: Bóng khi đâp vào tường, thanh trượt hay gạch sẽ bị nảy.      
+- Phá gạch: Khi bóng va vào gạch, gạch sẽ bị trừ máu và nếu xuống 0 thì gạch sẽ bị phá hủy hoàn toàn[Trừ gạch bất tử].   
+- Tính điểm: Khi gạch bị phá hủy, ta nhận được điểm số tương ứng.  
+- Màn chơi: Người chơi khi phá đảo level sẽ được chuyển sang level khác với bố cục gạch khác.   
+- Thua cuộc: Khi mất hết mạng, người chơi sẽ thua.   
+- Vật phẩm(Item): Chính là PowerUp hoặc Debuff, vật phẩm cung cấp sức mạnh hoặc ngược lại gây khó khăn cho người chơi.   
+- Nhạc nền/Âm thanh: Âm thanh khi va chạm hoặc nhạc nền của game giúp tăng trải nghiệm người dùng.   
+- Lưu điểm cao: Khi người chơi đạt điểm cao hơn nhưng với điều kiện không được thoát game giữa chừng thì game sẽ lưu điểm cao nhất.   
+- Hệ thống mạng sống: Người chơi bị giới hạn mạng, nếu hết thì bị thua tuy nhiên cũng có thể tăng mạng bằng cách ăn trái tim.
+- Va chạm: Sử dụng hệ thống va chạm để check va chạm giữa các vật thể nhằm mô tả vật lí trong game.
+  
 ### Phần 8: Tài liệu tham khảo
 🔹Bass: Tài liệu API của BASS [Link](https://www.un4seen.com/doc/)   
 🔹LibGDX: Tài liệu API của LibGDX [Link](https://libgdx.com/wiki/)   
