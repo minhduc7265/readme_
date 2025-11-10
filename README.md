@@ -52,16 +52,9 @@ Ta có hai cách như sau
 - **Java Native Access[JNA]**
   - JNA (Java Native Access) được phát triển bởi Timothy Wall, nhằm đơn giản hóa việc gọi các thư viện native từ Java mà không cần viết code JNI phức tạp. Thư viện này lần đầu ra mắt khoảng năm 2004 và kể từ đó trở thành một công cụ phổ biến cho việc tích hợp Java với các thư viện hệ thống hoặc thư viện C/C++.
   - Cách hoạt động hiểu đơn giản có thể giải thích như sau, JNA sẽ ánh xạ các hàm bên trong file dll vào một class nào đó, từ đó ta có thể sử dụng hàm của file dll một cách đơn giản hơn so với sử dụng JNI.
-  - Trong dự án này mình sẽ ánh xạ một số hàm của file Bass.dll từ đó có thể phát nhạc Module.   
-
-
-
-
-
-
-
-
-# Biểu đồ UML và cấu trúc Game:
+  - Trong dự án này mình sẽ ánh xạ một số hàm của file Bass.dll từ đó có thể phát nhạc Module.
+___
+### Phần 4: Biểu đồ UML và cấu trúc Game:
 🔹 1. Package engine
 - Chức năng: Quản lí logic va chạm và quản lí trạng thái game
 - Các lớp gồm:   
@@ -115,9 +108,56 @@ Ta có hai cách như sau
 🔹 7. Lớp Main   
 - Chức năng: Là nơi khởi chạy ứng dụng   
 - **Main**: tạo đối tượng game, khởi tạo LibGDX, thiết lập màn hình đầu tiên.   
+___
+### Phần 5: Các kỹ thuật sử dụng   
+🔹 1. Lập trình hướng đối tượng   
+- Game được thiết kế theo hướng đối tượng
+    - GameObject, MovableObject: Các lớp cơ sở cho các đối tượng của Game
+    - Paddle, Ball, Item,...: Các lớp dẫn xuất kế thừa các lớp cơ sở
+    
+🔹 2. Sử dụng vòng lặp   
+- Sử dụng vòng lặp để duy trì game chạy, cập nhật, hiển thị(updateLogic, Render)
+
+🔹 3. Xử lí va chạm
+- Va chạm được tham khảo qua giáo trình Real-Time Collision Detection của Christer Ericson   
+    - IntersectMovingSphereAABB(): Hàm phát hiện va chạm tổng thể   
+    - IntersectSegmentCircle(): Hàm phát hiện va chạm giữa một hình tròn và một đường thẳng   
+    - IntersectRayAABB(): Phát hiện va chạm sử dụng bài toán tổng Minkowski
+
+🔹 4. Quản lí tài nguyên   
+- Thay vì load đi load lại liên tục, ta sẽ sử dụng các Manager để quản lí các Texture, Music, Sound, Font
+
+🔹 5. Render và sử dụng Animation
+- Render, MasterRender giúp hiển thị các Texture trong game.   
+- AnimationSpriteSheet load các spritesheet, chạy các hiệu ứng như phá gạch, bom nổ làm tăng trải nghiệm chơi Game.
+
+🔹 6. Xử lí âm thanh   
+- Sử dụng Bass giúp phát nhạc Module.   
+- Sử dụng SoundManager cho các hiệu ứng âm thanh tức thời.   
+
+🔹 7. Quản lí giao diện, sự kiện
+- Sử dụng Screen tạo ra các màn hình như MainMenuScreen, CreditScreen, GameScreen.
+- Kết hợp Stage, Table, Button để xử lí sự kiện bấm nút.
+
+🔹 8. Multithread
+- Sử dụng đa luồng trong việc update Item.
+
+🔹 9. Quản lí dữ liệu level
+- Sử dụng LevelLoader để load dữ liệu viên gạch từ file json.
+- Sử dụng GameDataManager để đọc và ghi dữ liệu người chơi.
+
+🔹 10. Design Patterns
+- Sử dụng Singlenton Pattern cho các class như GameManager, TextureManager, SoundManager đảm bảo chúng tồn tại duy nhất trong suốt quá trình Game chạy.
+- Sử dụng Factory Pattern cho BrickFactory, AnimationFactory giúp tạo đối tượng dễ dàng, hạn chế lỗi.
+- Sử dụng Flyweight Pattern cho các class TextureManager, SoundManager nhằm tái sử dụng các tài nguyên mà không cần phải load lại.
+
+🔹 11. Xử lí ngoại lệ và Junit
+- Khi load tài nguyên bị lỗi, ta có thể sử dụng tài nguyên mặc định để tránh crash game, tương tự trong việc ta lấy dữ liệu của tài nguyên[Ví dụ: Khi lấy Texture bị null, ta chủ động sử dụng Texture mặc định để khi render không bị lỗi...]
+- Sử dụng JUnit để kiểm thử một số công đoạn[Ví dụ kiểm thử va chạm, kiểm thử di chuyển của MovableObject...]
 
 
-# Giới thiệu các vật phẩm trong game:
+
+### Phần 6: Giới thiệu các vật phẩm trong game
 | Tên    |   Hình Ảnh      | Loại    | Mô tả    |
 |----------|----------|----------|----------|
 |Bóng thường|<img src="https://github.com/minhduc7265/int2204-arkanoid-group2/blob/master/assets/textures/ball_1.png" alt="Alt text" width="25" height="25">| Bóng |Gây 1 sát thương cho gạch|
