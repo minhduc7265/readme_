@@ -24,7 +24,7 @@ ___
 Ta có hai cách như sau    
 - Cách thứ nhất: PullCode về máy tính cá nhân của bạn và sau đó dùng Intellij để chạy   
 - Cách thứ hai: Đơn giản hơn nhiều   
-  - Bước 1: Bạn tải file sau và đây chính là file cài đặt của Game   
+  - Bước 1: Bạn tải file sau và đây chính là file cài đặt của Game [Link](https://drive.google.com/file/d/1I8i2KVhKIk-eZbHDjGCFnVh61dSsrK_p/view?usp=sharing)   
   - Bước 2: Khởi chạy và giải nén ra   
   - Bước 3: Nếu chưa cài máy ảo Java thì bạn nên cài chúng   
   - Bước 4: Khởi chạy file arkanoid.jar   
