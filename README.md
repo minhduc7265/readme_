@@ -177,7 +177,24 @@ ___
 |Thanh trượt| <img src="https://github.com/minhduc7265/int2204-arkanoid-group2/blob/master/assets/textures/paddle.png" alt="Alt text" width="52" height="52">| Thanh trượt|Dùng để điều khiển bóng|
 
 
-# Giới thiệu các tính năng trong game:
+### Phần 7: Giới thiệu các tính năng trong game
+
+
+
+
+
+
+
+
+
+### Phần 8: Tài liệu tham khảo
+🔹Bass: Tài liệu API của BASS [Link](https://www.un4seen.com/doc/)   
+🔹LibGDX: Tài liệu API của LibGDX [Link](https://libgdx.com/wiki/)   
+🔹JNA: Tài liệu API của JNA [Link](https://java-native-access.github.io/jna/4.2.0/)   
+🔹Các tài nguyên trong Game: 时空环游之旅, Plants vs. Zombies 2, Peggle, Brick Inc, Brick Breaker.   
+🔹Va chạm: Giáo trình Real-Time Collision Detection của Christer Ericson. [Link](https://www.r-5.org/files/books/computers/algo-list/realtime-3d/Christer_Ericson-Real-Time_Collision_Detection-EN.pdf)      
+<img width="162" height="200" alt="image" src="https://github.com/user-attachments/assets/923dae37-6d08-40d0-a4d6-5d8c2159f424" />
+
 
 
 
